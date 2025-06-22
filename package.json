@@ -1,7 +1,5 @@
 {
-  "name": "heroku-root",
+  "name": "shopify-demo-server",
   "private": true,
-  "scripts": {
-    "start": "cd backend && node server.js"
-  }
+  "workspaces": ["backend"]
 }
