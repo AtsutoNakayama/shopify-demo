@@ -1,4 +1,5 @@
-.shopify/ 
-node_modules/ 
-*.zip 
-.DS_Store 
+.shopify/
+node_modules/
+*.zip
+.DS_Store
+.env
