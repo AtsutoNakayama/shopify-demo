@@ -18,6 +18,9 @@ app.use(bodyParser.json());
 // .envまたはHeroku環境変数に設定されたDiscord Webhook URL
 const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 
+// Herokuの指定ポートまたはローカル開発用に3000
+const PORT = process.env.PORT || 3000;
+
 // POSTエンドポイント '/notify' を定義
 app.post('/notify', async (req, res) => {
   const message = req.body.message;
@@ -49,7 +52,7 @@ app.post('/notify', async (req, res) => {
   }
 });
 
-// サーバー起動（ポート3000）
-app.listen(3000, () => {
-  console.log('🚀 Discord通知サーバーは http://localhost:3000 で起動中');
+// サーバー起動
+app.listen( PORT, () => {
+  console.log(`🚀 Listening on port ${PORT}`);
 });
