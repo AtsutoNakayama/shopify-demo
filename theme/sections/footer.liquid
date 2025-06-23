@@ -233,6 +233,20 @@
                   </h3>
                 {%- endif -%}
               {%- endform -%}
+              <div style="margin: 2em 0; padding: 1em; border-top: 1px solid #ccc;">
+                <input
+                  id="webhook-message"
+                  type="text"
+                  placeholder="メッセージを入力"
+                  style="padding: 0.5em; width: 60%;"
+                />
+                <button
+                  onclick="sendWebhook()"
+                  style="padding: 0.5em 1em; margin-left: 0.5em;"
+                >
+                  送信
+                </button>
+              </div>
             </div>
           {%- endif -%}
 
@@ -320,6 +334,29 @@
     </div>
   </div>
 </footer>
+
+<script>
+  async function sendWebhook() {
+    const message = document.getElementById("webhook-message").value;
+    if (!message) {
+      alert("メッセージを入力してください");
+      return;
+    }
+
+    const res = await fetch("https://shopify-demo-server-f442bfd957f1.herokuapp.com/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
+
+    const json = await res.json();
+    if (json.success) {
+      alert("送信しました");
+    } else {
+      alert("送信失敗: " + json.error);
+    }
+  }
+</script>
 
 {% schema %}
 {
