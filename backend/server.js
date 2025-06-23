@@ -12,6 +12,10 @@ const fetch = (...args) =>
 // Expressアプリケーションを初期化
 const app = express();
 
+// CORS対応
+const cors = require('cors');
+app.use(cors());
+
 // JSONデータを受け取るための設定
 app.use(bodyParser.json());
 
